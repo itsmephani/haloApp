@@ -1,0 +1,37 @@
+
+<ion-navbar *navbar>
+  <ion-title>
+    Profile
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="profile">
+
+  <ion-card>
+    <ion-card-content class="cover">
+      <div class="avatar">
+        
+      </div>
+      <div class="edit-action">
+        <button fab fab-right fab-top class="edit" *ngIf="!editMode" (click)="editMode=true;">
+          <ion-icon name="md-create"></ion-icon>
+        </button>
+        <button fab fab-right fab-top class="edit" *ngIf="editMode" (click)="updateProfile()">
+          <ion-icon name="thumbs-up"></ion-icon>
+        </button>
+      </div>
+    </ion-card-content>
+    
+    <ion-item>
+      <ion-icon name="person" item-left small></ion-icon>
+      <ion-input [(ngModel)]='userProfile.name' [disabled]="!editMode"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="phone-portrait" item-left small></ion-icon>
+      <h2>{{userProfile.mobile_number}}</h2>
+      <!--<p>14 S. Hop Avenue, Madison, WI 53703</p>-->
+    </ion-item>
+  </ion-card>
+ 
+</ion-content>

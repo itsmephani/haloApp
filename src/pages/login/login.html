@@ -1,0 +1,81 @@
+<ion-content>
+  <div class="login-wrapper">
+    <!-- actions -->
+    <div class="actions">
+      <button fab class="action login-action animated fadeInUp animation-delay" *ngIf="userAction=='login'" (click)="userAction='signup'">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+      <button fab secondary *ngIf="userAction=='signup'"
+        class="action signup-action animated bounceIn animation-delay" 
+        (click)="userAction='login'" [class.active]="userAction=='signup'">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </div>
+
+    <!-- login -->
+    <div class="login animated fadeInDown" *ngIf='userAction == "login"'>
+      <ion-card>
+        <ion-card-header>
+          Login
+        </ion-card-header>
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input [(ngModel)]='user.name' primary></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]='user.password'></ion-input>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <button ion-button outline (click)='login()'>
+            Login
+          </button>
+        </ion-item>
+      </ion-card>
+    </div>
+
+    <!-- registration -->
+    <div class="signup animated flipInY" *ngIf='userAction == "signup"'>
+      <ion-card class="back-card"></ion-card>
+      <ion-card>
+        <ion-card-header>
+          Sign Up
+        </ion-card-header>
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input [(ngModel)]='user.name'></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" [(ngModel)]='user.email'></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Mobile</ion-label>
+          <ion-input type="tel" [(ngModel)]='user.mobile_number'></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]='user.password'></ion-input>
+        </ion-item> 
+
+        <ion-item>
+          <ion-label floating>Confirm</ion-label>
+          <ion-input type="password" [(ngModel)]='user.password_confirmation'></ion-input>
+        </ion-item>
+        
+
+        <ion-item class="text-center">
+          <button ion-button class='secondary' outline (click)='signUp()'>
+            SignUp
+          </button>
+        </ion-item>
+      </ion-card>
+    </div>
+   </div>
+   
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-navbar *navbar>
+  <ion-title>Feed</ion-title>
+</ion-navbar>
+
+<ion-content padding class="posts-wrapper">
+  <ion-icon name="add-circle" id="add-post" (click)="toggleAddNewPost()"></ion-icon>
+  <div id="new-post" *ngIf="addNewPost">
+    <ion-item>    
+      <ion-label floating>Post</ion-label>
+      <ion-textarea [(ngModel)]='post.content'></ion-textarea>
+    </ion-item>
+    <button (click)='addPost()' small class="right">Add</button>
+    <button (click)='toggleAddNewPost()' small outline class="right">
+      Cancel
+    </button>
+  </div>
+
+  <div class="posts">
+    <div *ngIf="!loading && !posts.length" class="text-center">
+      <button *ngIf="!addNewPost" (click)='initPost(); toggleAddNewPost();' small>
+        Add a Post
+      </button>
+    </div>
+    <ion-card *ngFor="let post of posts">
+
+      <ion-item>
+        <ion-avatar item-left>
+          <!--img src="img/marty-avatar.png"-->
+        </ion-avatar>
+        <h2>{{post.user ? post.user.name : ''}}</h2>
+        <p>{{post.date}}</p>
+      </ion-item>
+
+      <!--<img src="img/advance-card-bttf.png">-->
+
+      <ion-card-content>
+        <p>{{post.content}}</p>
+      </ion-card-content>
+
+      <ion-item>
+        <button primary clear item-left (click)="like(post)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{post.likes.length}} Likes</div>
+        </button>
+        <button primary clear item-left (click)="post.addComment = true">
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+        <ion-note item-right>
+          11h ago
+        </ion-note>
+      </ion-item>
+
+       <ion-item *ngIf="post.addComment">
+         <ion-textarea [(ngModel)]='post.comment.comment' placeholder="Comment"></ion-textarea>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>
+
